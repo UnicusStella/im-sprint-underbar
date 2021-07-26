@@ -11,6 +11,7 @@
 // 이 함수는 underbar의 기능 구현 및 테스트를 위해 재사용되는 함수입니다.
 _.identity = function (val) {
   // TODO: 여기에 코드를 작성합니다.
+  return val;
 };
 
 /**
@@ -89,7 +90,7 @@ _.slice = function (arr, start, end) {
   let _start = start || 0, // `start`가 undefined인 경우, slice는 0부터 동작합니다.
     _end = end;
 
-  // 입력받은 인덱스가 음수일 경우, 마지막 인덱스부터 매칭한다. (예. -1 => arr.length - 1, -2 => arr.length - 2)
+  // 입력받은 인덱스가 음수일 경우, 마지막 인덱스부터 매칭한  다. (예. -1 => arr.length - 1, -2 => arr.length - 2)
   // 입력받은 인덱스는 0 이상이어야 한다.
   if (start < 0) _start = Math.max(0, arr.length + start);
   if (end < 0) _end = Math.max(0, arr.length + end);
@@ -112,6 +113,20 @@ _.slice = function (arr, start, end) {
 // n이 배열의 길이를 벗어날 경우, 전체 배열을 shallow copy한 새로운 배열을 리턴합니다.
 _.take = function (arr, n) {
   // TODO: 여기에 코드를 작성합니다.
+  let reArr = [];
+  if (n === undefined || n < 0) {
+    return reArr;
+  }
+
+  if (arr.length < n) {
+    reArr = arr;
+    return reArr;
+  }
+
+  for (let i = 0; i < n; i++) {
+    reArr.push(arr[i]);
+  }
+  return reArr;
 };
 
 // _.drop는 _.take와는 반대로, 처음 n개의 element를 제외한 새로운 배열을 리턴합니다.
@@ -119,6 +134,20 @@ _.take = function (arr, n) {
 // n이 배열의 길이를 벗어날 경우, 빈 배열을 리턴합니다.
 _.drop = function (arr, n) {
   // TODO: 여기에 코드를 작성합니다.
+  let reArr = [];
+  if (n === undefined || n < 0) {
+    reArr = arr;
+    return reArr;
+  }
+
+  if (arr.length < n) {
+    return reArr;
+  }
+
+  for (let i = n; i < arr.length; i++) {
+    reArr.push(arr[i]);
+  }
+  return reArr;
 };
 
 // _.last는 배열의 마지막 n개의 element를 담은 새로운 배열을 리턴합니다.
@@ -127,6 +156,21 @@ _.drop = function (arr, n) {
 // _.take와 _.drop 중 일부 또는 전부를 활용할 수 있습니다.
 _.last = function (arr, n) {
   // TODO: 여기에 코드를 작성합니다.
+  let reArr = [];
+  if (n === undefined || n < 0) {
+    reArr = _.drop(arr, arr.length - 1);
+    return reArr;
+  }
+
+  if (n > arr.length) {
+    reArr = arr;
+    return reArr;
+  }
+
+  for (let i = arr.length - n; i < arr.length; i++) {
+    reArr.push(arr[i]);
+  }
+  return reArr;
 };
 
 // _.each는 collection의 각 데이터에 반복적인 작업을 수행합니다.
