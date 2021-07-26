@@ -238,19 +238,34 @@ _.indexOf = function (arr, target) {
 // test 함수는 각 요소에 반복 적용됩니다.
 _.filter = function (arr, test) {
   // TODO: 여기에 코드를 작성합니다.
+  let reArr = [];
+  _.each(arr, function (item) {
+    if (test(item)) {
+      reArr.push(item);
+    }
+  });
+  return reArr;
 };
 
 // _.reject는 _.filter와 정반대로 test 함수를 통과하지 않는 모든 요소를 담은 새로운 배열을 리턴합니다.
 _.reject = function (arr, test) {
   // TODO: 여기에 코드를 작성합니다.
   // TIP: 위에서 구현한 `filter` 함수를 사용해서 `reject` 함수를 구현해 보세요.
+  return _.filter(arr, (item) => !test(item));
 };
 
 // _.uniq는 주어진 배열의 요소가 중복되지 않도록 새로운 배열을 리턴합니다.
 // 중복 여부의 판단은 엄격한 동치 연산(strict equality, ===)을 사용해야 합니다.
 // 입력으로 전달되는 배열의 요소는 모두 primitive value라고 가정합니다.
 _.uniq = function (arr) {
+  let reArr = [];
   // TODO: 여기에 코드를 작성합니다.
+  _.each(arr, function (item, index, arr) {
+    if (_.indexOf(arr, item) === index) {
+      reArr.push(item);
+    }
+  });
+  return reArr;
 };
 
 // _.map은 iteratee(반복되는 작업)를 배열의 각 요소에 적용(apply)한 결과를 담은 새로운 배열을 리턴합니다.
@@ -259,6 +274,11 @@ _.map = function (arr, iteratee) {
   // TODO: 여기에 코드를 작성합니다.
   // _.map 함수는 매우 자주 사용됩니다.
   // _.each 함수와 비슷하게 동작하지만, 각 요소에 iteratee를 적용한 결과를 리턴합니다.
+  let reArr = [];
+
+  _.each(arr, (item) => reArr.push(iteratee(item)));
+
+  return reArr;
 };
 
 // _.pluck은
@@ -277,6 +297,10 @@ _.pluck = function (arr, keyOrIdx) {
   // return result;
   // _.pluck은 _.map을 사용해 구현하시기 바랍니다.
   // TODO: 여기에 코드를 작성합니다.
+
+  let reArr = [];
+  _.map(arr, (item) => reArr.push(item[keyOrIdx]));
+  return reArr;
 };
 
 // _.reduce는
