@@ -353,4 +353,25 @@ _.pluck = function (arr, keyOrIdx) {
 //         // 11 + 5 * 5 = 36; (마지막 작업이므로 최종적으로 36이 리턴됩니다.)
 _.reduce = function (arr, iteratee, initVal) {
   // TODO: 여기에 코드를 작성합니다.
+  let total = 0;
+  let reArr = _.slice(arr, 1);
+
+  if (initVal === undefined) {
+    _.each(reArr, function (item, index, _arr) {
+      if (total === 0) {
+        total = iteratee(arr[0], item, index, _arr);
+      } else {
+        total = iteratee(total, item, index, _arr);
+      }
+    });
+  } else {
+    _.each(arr, function (item, index, _arr) {
+      if (total === 0) {
+        total = iteratee(initVal, item, index, _arr);
+      } else {
+        total = iteratee(total, item, index, _arr);
+      }
+    });
+  }
+  return total;
 };
