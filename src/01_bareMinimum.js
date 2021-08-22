@@ -288,11 +288,9 @@ _.pluck = function (arr, keyOrIdx) {
   // return result;
   // _.pluck은 _.map을 사용해 구현하시기 바랍니다.
   // TODO: 여기에 코드를 작성합니다.
-  let newArr = [];
-  _.map(arr, (item) => {
-    newArr.push(item[keyOrIdx]);
+  return _.map(arr, (item) => {
+    return item[keyOrIdx];
   });
-  return newArr;
 };
 
 // _.reduce는
