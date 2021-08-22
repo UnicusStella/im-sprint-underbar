@@ -234,6 +234,14 @@ _.filter = function (arr, test) {
 _.reject = function (arr, test) {
   // TODO: 여기에 코드를 작성합니다.
   // TIP: 위에서 구현한 `filter` 함수를 사용해서 `reject` 함수를 구현해 보세요.
+  let newArr = [];
+
+  _.filter(arr, (el) => {
+    if (!test(el)) {
+      newArr.push(el);
+    }
+  });
+  return newArr;
 };
 
 // _.uniq는 주어진 배열의 요소가 중복되지 않도록 새로운 배열을 리턴합니다.
