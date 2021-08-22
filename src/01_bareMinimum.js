@@ -144,6 +144,15 @@ _.drop = function (arr, n) {
 // _.take와 _.drop 중 일부 또는 전부를 활용할 수 있습니다.
 _.last = function (arr, n) {
   // TODO: 여기에 코드를 작성합니다.
+  let newArr = [];
+  if (n === undefined || n < 0) {
+    newArr.push(arr.length);
+    return newArr;
+  }
+  if (n === 0) return [];
+  if (n >= arr.length) return (newArr = arr);
+
+  return _.drop(arr, n - 1);
 };
 
 // _.each는 collection의 각 데이터에 반복적인 작업을 수행합니다.
@@ -177,6 +186,17 @@ _.last = function (arr, n) {
 // _.each는 명시적으로 어떤 값을 리턴하지 않습니다.
 _.each = function (collection, iteratee) {
   // TODO: 여기에 코드를 작성합니다.
+  let count = 0;
+  if (Array.isArray(collection)) {
+    for (let el of collection) {
+      iteratee(el, count, collection);
+      count++;
+    }
+  } else if (typeof collection === 'object') {
+    for (let key in collection) {
+      iteratee(collection[key], key, collection);
+    }
+  }
 };
 
 // _.indexOf는 target으로 전달되는 값이 arr의 요소인 경우, 배열에서의 위치(index)를 리턴합니다.
