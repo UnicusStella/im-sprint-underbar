@@ -222,6 +222,12 @@ _.indexOf = function (arr, target) {
 // test 함수는 각 요소에 반복 적용됩니다.
 _.filter = function (arr, test) {
   // TODO: 여기에 코드를 작성합니다.
+  let newArr = [];
+  _.each(arr, (el) => {
+    if (test(el)) newArr.push(el);
+  });
+
+  return newArr;
 };
 
 // _.reject는 _.filter와 정반대로 test 함수를 통과하지 않는 모든 요소를 담은 새로운 배열을 리턴합니다.
