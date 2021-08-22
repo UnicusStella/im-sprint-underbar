@@ -188,8 +188,8 @@ _.each = function (collection, iteratee) {
   // TODO: 여기에 코드를 작성합니다.
   let count = 0;
   if (Array.isArray(collection)) {
-    for (let el of collection) {
-      iteratee(el, count, collection);
+    for (let item of collection) {
+      iteratee(item, count, collection);
       count++;
     }
   } else if (typeof collection === 'object') {
@@ -223,8 +223,8 @@ _.indexOf = function (arr, target) {
 _.filter = function (arr, test) {
   // TODO: 여기에 코드를 작성합니다.
   let newArr = [];
-  _.each(arr, (el) => {
-    if (test(el)) newArr.push(el);
+  _.each(arr, (item) => {
+    if (test(item)) newArr.push(item);
   });
 
   return newArr;
@@ -236,9 +236,9 @@ _.reject = function (arr, test) {
   // TIP: 위에서 구현한 `filter` 함수를 사용해서 `reject` 함수를 구현해 보세요.
   let newArr = [];
 
-  _.filter(arr, (el) => {
-    if (!test(el)) {
-      newArr.push(el);
+  _.filter(arr, (item) => {
+    if (!test(item)) {
+      newArr.push(item);
     }
   });
   return newArr;
@@ -250,9 +250,9 @@ _.reject = function (arr, test) {
 _.uniq = function (arr) {
   // TODO: 여기에 코드를 작성합니다.
   let newArr = [];
-  _.each(arr, (el, index, arr) => {
-    if (_.indexOf(arr, el) === index) {
-      newArr.push(el);
+  _.each(arr, (item, index, arr) => {
+    if (_.indexOf(arr, item) === index) {
+      newArr.push(item);
     }
   });
   return newArr;
@@ -265,8 +265,8 @@ _.map = function (arr, iteratee) {
   // _.map 함수는 매우 자주 사용됩니다.
   // _.each 함수와 비슷하게 동작하지만, 각 요소에 iteratee를 적용한 결과를 리턴합니다.
   let newArr = [];
-  _.each(arr, (el) => {
-    newArr.push(iteratee(el));
+  _.each(arr, (item) => {
+    newArr.push(iteratee(item));
   });
 
   return newArr;
@@ -289,8 +289,8 @@ _.pluck = function (arr, keyOrIdx) {
   // _.pluck은 _.map을 사용해 구현하시기 바랍니다.
   // TODO: 여기에 코드를 작성합니다.
   let newArr = [];
-  _.map(arr, (el) => {
-    newArr.push(el[keyOrIdx]);
+  _.map(arr, (item) => {
+    newArr.push(item[keyOrIdx]);
   });
   return newArr;
 };
@@ -345,4 +345,15 @@ _.pluck = function (arr, keyOrIdx) {
 //         // 11 + 5 * 5 = 36; (마지막 작업이므로 최종적으로 36이 리턴됩니다.)
 _.reduce = function (arr, iteratee, initVal) {
   // TODO: 여기에 코드를 작성합니다.
+  let newArr = initVal;
+
+  _.each(arr, function (item, idx, src) {
+    if (initVal === undefined && idx === 0) {
+      newArr = item;
+    } else {
+      newArr = iteratee(newArr, item, idx, src);
+    }
+  });
+
+  return newArr;
 };
