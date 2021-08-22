@@ -264,6 +264,12 @@ _.map = function (arr, iteratee) {
   // TODO: 여기에 코드를 작성합니다.
   // _.map 함수는 매우 자주 사용됩니다.
   // _.each 함수와 비슷하게 동작하지만, 각 요소에 iteratee를 적용한 결과를 리턴합니다.
+  let newArr = [];
+  _.each(arr, (el) => {
+    newArr.push(iteratee(el));
+  });
+
+  return newArr;
 };
 
 // _.pluck은
