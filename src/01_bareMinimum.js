@@ -150,6 +150,7 @@ _.drop = function (arr, n) {
   return reArr;
 };
 
+
 // _.last는 배열의 마지막 n개의 element를 담은 새로운 배열을 리턴합니다.
 // n이 undefined이거나 음수인 경우, 배열의 마지막 요소만을 담은 배열을 리턴합니다.
 // n이 배열의 길이를 벗어날 경우, 전체 배열을 shallow copy한 새로운 배열을 리턴합니다.
@@ -172,6 +173,20 @@ _.last = function (arr, n) {
   }
   return reArr;
 };
+
+_.last = function (arr, n) {
+  // TODO: 여기에 코드를 작성합니다.
+  let newArr = [];
+  if (n === undefined || n < 0) {
+    newArr.push(arr.length);
+    return newArr;
+  }
+  if (n === 0) return [];
+  if (n >= arr.length) return (newArr = arr);
+
+  return _.drop(arr, n - 1);
+};
+
 
 // _.each는 collection의 각 데이터에 반복적인 작업을 수행합니다.
 //  1. collection(배열 혹은 객체)과 함수 iteratee(반복되는 작업)를 인자로 전달받아 (iteratee는 함수의 인자로 전달되는 함수이므로 callback 함수)
